@@ -14,6 +14,8 @@ router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
 router.get('/current', auth, ctrlWrapper(ctrl.current));
 
+router.get('/verify/:verificationToken', ctrlWrapper(ctrl.verifyEmail));
+
 router.patch('/avatars', auth, upload.single('avatar'), ctrlWrapper(ctrl.updateAvatar));
 
 router.patch('/', validation(joiChangeSubsSchema), auth, ctrlWrapper(ctrl.changeSubs));
