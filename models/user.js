@@ -22,6 +22,10 @@ const userSchema = Schema({
     type: String,
     default: null,
   },
+  avatarURL: {
+    type: String,
+    required: true,
+  },
 }, { versionKey: false, timestamps: true })
 
 userSchema.methods.setPassword = function (password) {
@@ -49,4 +53,9 @@ const joiChangeSubsSchema = Joi.object({
 
 const User = model('user', userSchema);
 
-module.exports = { User, joiSignupSchema, joiLoginSchema, joiChangeSubsSchema }
+module.exports = {
+  User,
+  joiSignupSchema,
+  joiLoginSchema,
+  joiChangeSubsSchema
+}
