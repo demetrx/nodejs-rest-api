@@ -59,11 +59,16 @@ const joiChangeSubsSchema = Joi.object({
   subscription: Joi.string().required(),
 })
 
+const joiResendEmailSchema = Joi.object({
+  email: Joi.string().email().required(),
+})
+
 const User = model('user', userSchema);
 
 module.exports = {
   User,
   joiSignupSchema,
   joiLoginSchema,
-  joiChangeSubsSchema
+  joiChangeSubsSchema,
+  joiResendEmailSchema
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { auth, upload, validation, ctrlWrapper } = require('../../middlewares');
-const { joiLoginSchema, joiSignupSchema, joiChangeSubsSchema } = require('../../models/user');
+const { joiLoginSchema, joiSignupSchema, joiChangeSubsSchema, joiResendEmailSchema } = require('../../models/user');
 const { users: ctrl } = require('../../controllers');
 
 const router = express.Router();
@@ -15,6 +15,8 @@ router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 router.get('/current', auth, ctrlWrapper(ctrl.current));
 
 router.get('/verify/:verificationToken', ctrlWrapper(ctrl.verifyEmail));
+
+router.post('/verify', validation(joiResendEmailSchema), ctrlWrapper(ctrl.resendVerificationEmail));
 
 router.patch('/avatars', auth, upload.single('avatar'), ctrlWrapper(ctrl.updateAvatar));
 
